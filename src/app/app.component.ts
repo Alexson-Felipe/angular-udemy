@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   public desativado: boolean = true;
   public nome: string = 'Alex';
   public condicao: boolean = false;
+  public addValue: number = 10;
+  public getDados: { nome: string; idade: number } | undefined;
   constructor() {}
 
   public adicionar(): number {
@@ -36,6 +38,14 @@ export class AppComponent implements OnInit {
     } else {
       this.condicao = true;
     }
+  }
+
+  public add(): void {
+    this.addValue += 1;
+  }
+
+  public setDados(event: { nome: string; idade: number }) {
+    this.getDados = event;
   }
   /*
   ngDoCheck(): void {
