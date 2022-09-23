@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 //Services
 import { FoodListService } from 'src/app/services/food-list.service';
@@ -15,5 +16,8 @@ export class FoodListComponent implements OnInit {
 
   ngOnInit(): void {
     this.foodList = this.foodListService.foodList();
+    this.foodListService.emitEvent.subscribe({
+      next: (res: string) => alert(`Olha você add => ${res}`),
+    });
   }
 }
