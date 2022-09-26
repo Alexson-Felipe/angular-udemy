@@ -20,7 +20,7 @@ export class FoodListComponent implements OnInit {
       next: (res) => (this.foodList = res),
       error: (error) => error,
     });
-
+    //
     this.foodListService.emitEvent.subscribe((res) => {
       alert(`Olha você add => ${res.nome}`);
       return this.foodList.push(res);
