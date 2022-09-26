@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 //Components
 import { FoodAddComponent } from './food-add/food-add.component';
@@ -23,6 +24,6 @@ import { OutputComponent } from './output/output.component';
     FoodListComponent,
     FoodAddComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
 })
 export class SharedModule {}
