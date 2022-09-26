@@ -21,11 +21,9 @@ export class FoodListComponent implements OnInit {
       error: (error) => error,
     });
 
-    this.foodListService.emitEvent.subscribe(
-      res => {
-        alert(`Olha você add => ${res.nome}`);
-        return this.foodList.push(res);
-      }
-    );
+    this.foodListService.emitEvent.subscribe((res) => {
+      alert(`Olha você add => ${res.nome}`);
+      return this.foodList.push(res);
+    });
   }
 }
