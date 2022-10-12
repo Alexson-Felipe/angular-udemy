@@ -17,6 +17,7 @@ export class FoodListComponent implements OnInit {
 
   ngOnInit(): void {
     this.foodListService.foodList().subscribe({
+      //subscribe se increva e fica escutando
       next: (res) => (this.foodList = res),
       error: (error) => error,
     });
@@ -24,6 +25,24 @@ export class FoodListComponent implements OnInit {
     this.foodListService.emitEvent.subscribe((res) => {
       alert(`Olha você add => ${res.nome}`);
       return this.foodList.push(res);
+    });
+  }
+
+  foodListDelete(id: number) {
+    return this.foodListService.foodListDelete(id).subscribe({
+      next: (res: FoodList) => {
+        this.foodList = this.foodList.filter((item) => {
+          return id !== item.id;
+        });
+      },
+      error: (error: any) => error,
+    });
+  }
+
+  foodListEdit(nome: string, id: number) {
+    this.foodListService.foodListEdit(nome, id).subscribe({
+      next: (res: FoodList) => {},
+      error: (error: any) => error,
     });
   }
 }

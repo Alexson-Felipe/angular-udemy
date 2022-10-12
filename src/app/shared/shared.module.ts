@@ -8,6 +8,7 @@ import { FoodListComponent } from './food-list/food-list.component';
 import { InputComponent } from './input/input.component';
 import { NewComponentComponent } from './new-component/new-component.component';
 import { OutputComponent } from './output/output.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { OutputComponent } from './output/output.component';
     FoodListComponent,
     FoodAddComponent,
   ],
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
 })
 export class SharedModule {}

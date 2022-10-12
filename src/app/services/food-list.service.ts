@@ -1,8 +1,8 @@
-import { FoodList } from '../module/food-list';
-import { FoodListComponent } from './../shared/food-list/food-list.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { FoodList } from '../module/food-list';
 
 @Injectable({
   providedIn: 'root', // <- ele mostra para toda nossa aplicação, já está para qualquer um fazer injeção de dependencia.
@@ -11,6 +11,14 @@ export class FoodListService {
   public emitEvent = new EventEmitter();
 
   private list: Array<string> = ['X Bacon', 'Feijão', 'Ovo'];
+
+  //Para http customizados customizados
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      //Authorization: "Beares r13as21rt23t1atyuu@" <- se quiser passar autorização de token
+    }),
+  };
 
   private url: string = 'http://localhost:3000/'; //list-food
 
@@ -21,8 +29,10 @@ export class FoodListService {
   // }
 
   public foodList(): Observable<Array<FoodList>> {
+    //Dentro do observable está o retorno
     return this.http.get<Array<FoodList>>(`${this.url}list-food`).pipe(
-      (res) => res,
+      //O pipe seria depois que fizer a requisição, faça isso.
+      (res) => res, //quando dar un sucess vai retornar o res
       (error) => error
     );
   }
@@ -39,6 +49,22 @@ export class FoodListService {
         (res) => res,
         (error) => error
       );
+  }
+
+  public foodListEdit(value: string, id: number): Observable<FoodList> {
+    return this.http
+      .put<FoodList>(`${this.url}list-food/${id}`, { nome: value })
+      .pipe(
+        (res) => res,
+        (error) => error
+      );
+  }
+
+  public foodListDelete(id: number): Observable<FoodList> {
+    return this.http.delete<FoodList>(`${this.url}list-food/${id}`).pipe(
+      (res) => res,
+      (error) => error
+    );
   }
 
   // public foodListAlert(value: string) {
