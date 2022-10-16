@@ -1,0 +1,68 @@
+<form #form="ngForm">
+  <br />
+  {{ form.valid }}
+  <br />
+  <br />
+  <label
+    >Nome:
+    <input
+      type="text"
+      name="nome"
+      #nome="ngModel"
+      [ngModel]="nome.value"
+      required
+    />
+    <span *ngIf="nome.valid && nome.dirty && nome.touched">Invalid</span>
+    <br />
+    {{ nome.valid }}
+    {{ nome.dirty }}
+    {{ nome.touched }}
+    <br />
+  </label>
+
+  <br />
+  <label
+    >Masculino:
+    <input type="radio" name="sexo" value="Masculino" ngModel />
+  </label>
+
+  <br />
+  <label
+    >Feminino:
+    <input type="radio" name="sexo" value="Feminino" ngModel />
+  </label>
+
+  <br />
+  <label
+    >Outros:
+    <input type="radio" name="sexo" value="Outros" ngModel />
+  </label>
+
+  <br />
+  <label
+    >Angular:
+    <input type="checkbox" name="angular" ngModel />
+  </label>
+
+  <br />
+  <label
+    >Vue:
+    <input type="checkbox" name="vue" ngModel />
+  </label>
+
+  <br />
+  <label
+    >React:
+    <input type="checkbox" name="react" ngModel />
+  </label>
+
+  <br />
+
+  <select name="comidas" ngModel>
+    <option value="">Selecione um alimento</option>
+    <option *ngFor="let item of listComida" [ngValue]="item">
+      {{ item.comida }}
+    </option>
+  </select>
+</form>
+{{ form.value | json }}
